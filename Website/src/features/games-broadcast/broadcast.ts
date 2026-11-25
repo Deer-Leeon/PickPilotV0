@@ -10,8 +10,8 @@ import { formatOdds, formatSpread, impliedProbability } from "@/lib/research/odd
 
 export interface BroadcastTeam {
   abbr: string;
-  fullName: string;
   city: string;
+  nickname: string;
   record: string;
   spreadLine: string;
   spreadPrice: string;
@@ -53,8 +53,8 @@ function teamView(
   const moneyline = game.markets.moneyline[side];
   return {
     abbr: entry.team.abbr,
-    fullName: entry.team.fullName,
     city: entry.team.city,
+    nickname: entry.team.nickname,
     record: formatRecord(entry.record),
     spreadLine: formatSpread(spread.line ?? 0),
     spreadPrice: formatOdds(spread.price),
