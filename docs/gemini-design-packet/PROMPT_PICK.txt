@@ -1,0 +1,11 @@
+Create one image. It is a realistic screenshot of a desktop website, 16:9, filling the whole frame. No phone, no browser chrome, no device frame, no poster, no slide, no captions, no arrows, no labels outside the website, no watermark.
+
+The product is PickPilot, an NBA research site. People study player props here. They do not place bets. The screen is still the Games tab, but it is organized around the pick, not the matchup.
+
+Design direction: Pick. The page is a calm list of player props for tonight. Each row is one decision: player name, team, the stat, the line, the odds, and one hit rate. Example rows, use these and do not invent more: Jalen Brunson, Knicks, points, over 28.5, -115, hits in 7 of the last 10. Jaylen Brown, Celtics, points, over 26.5, -110, hits in 6 of the last 10. Nikola Jokic, Nuggets, rebounds, over 12.5, -120, hits in 8 of the last 10. Anthony Davis, Lakers, points, over 25.5, -105, hits in 5 of the last 10. The game, Knicks vs Celtics at 7:30, is only a small heading above the first rows. The other games are the same kind of heading, not cards.
+
+This must not look like the existing PickPilot screen. Do not use a left navigation rail, do not stack game cards, and do not make spread, moneyline, and total the main columns. Do not copy a sportsbook prop screen, PrizePicks, or a spreadsheet.
+
+Visual tone: a printed research sheet on a screen. Warm off-white background, black text, one deep green for the hit rate only. Hairline rules between rows. No cards, no shadows, no gradients, no photos, no icons of basketballs.
+
+The website fills the image edge to edge.

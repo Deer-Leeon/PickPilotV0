@@ -1,0 +1,24 @@
+PickPilot is a sports research site. Phase 1 is NBA only, two tabs: Games and Players. A person looks up games, lines, and players before they bet. It is not a sportsbook. Nobody places a bet inside it. They research, then the odds can be saved to a slip.
+
+The current Games screen, which Gemini must not copy:
+
+- Dark, quiet, research-tool look.
+- A left rail for navigation, a main column, and a right-hand panel called Stand Outs.
+- The main column is titled "Upcoming Games".
+- Date tabs across the top.
+- Column headings: Match, Spread, Moneyline, Total.
+- One rounded card per game. Each card has two team rows. Each row has a logo, the team name, the record, and three odds cells.
+- The best price is marked with a small green dot.
+- Clicking a card opens the game. Clicking an odds cell adds it to a research slip.
+
+Same content must appear in any new design, so the comparison is fair:
+
+Tonight. Four NBA games.
+Boston Celtics (42-12) at New York Knicks (38-16), 7:30 PM.
+Spread Knicks -3.5 (-110), moneyline Knicks -160, total 224.5.
+Los Angeles Lakers (32-22) at Denver Nuggets (40-14), 9:00 PM.
+Spread Nuggets -6.5 (-108), moneyline Nuggets -240, total 231.5.
+Miami Heat (28-26) at Milwaukee Bucks (34-20), 8:00 PM.
+Golden State Warriors (30-24) at Phoenix Suns (31-23), 9:30 PM.
+A small note that the green mark means best line.
+One stand-out fact: Knicks are 18-4 at home against the spread this season.

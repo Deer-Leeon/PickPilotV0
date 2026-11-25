@@ -1,0 +1,13 @@
+Create one image. It is a realistic screenshot of a desktop website, 16:9, filling the whole frame. No phone, no browser chrome, no device frame, no poster, no slide, no captions, no arrows, no labels outside the website, no watermark.
+
+The product is PickPilot, an NBA research site. People study games and odds here. They do not place bets. The screen is the Games tab for tonight.
+
+Design direction: Broadcast. One game is the hero and fills most of the screen. The Knicks at home against the Celtics, 7:30 PM. The two team names and the point spread are the largest type on the page. Moneyline and total sit under the spread, clearly secondary. The other three games tonight are a slim strip along the bottom, each one small enough to scan in a second. The stand-out fact, "Knicks are 18-4 at home against the spread", is one line under the matchup, not a side panel.
+
+Use the real teams and numbers from the attached brief. Invent nothing else. Show a small green mark for the best line.
+
+This must not look like the existing PickPilot screen. Do not use a left navigation rail, do not stack full game cards down the page, and do not make a three-column odds table the main layout. Do not copy ESPN, DraftKings, FanDuel, or a generic dark dashboard.
+
+Visual tone: a modern sports broadcast graphic that happens to be a website. Deep charcoal background, one warm off-white for the main type, a single amber accent. Lots of empty space around the hero matchup. Sharp, not glossy. No gradients, no glow, no glass, no 3D, no stock photos of players, no basketballs, no confetti.
+
+The website fills the image edge to edge.

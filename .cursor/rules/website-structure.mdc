@@ -1,0 +1,63 @@
+---
+description: Where code goes in the PickPilot website (Website/) and what to do before and after every change
+alwaysApply: true
+---
+
+# PickPilot website: keep the structure
+
+Applies to every change under `Website/`. Before the first change in a session, read `Website/README.md` (folder map, "How to" recipes, Next.js rules).
+
+## Before writing code
+
+1. Decide where the change belongs using the table below, and say which files you will touch and why.
+2. Search for an existing component, helper or type before writing a new one. Extend it if it is close.
+3. If the change does not fit the current structure, fix the structure first (split, move, rename, extract), then add the feature. Never put code somewhere because it is the nearest file. Say what you restructured.
+
+## Where things go
+
+| Kind of code | Location | Rule |
+| --- | --- | --- |
+| Routes | `src/app/` | Load data, wrap in `<Suspense>`, hand to a feature. No logic, no layout markup. |
+| Data access | `src/data/repository.ts` | The only door to data. Nothing outside `src/data/` imports `fixtures/` or `generate/`. New data means a type in `types.ts` plus an `async` repository function. |
+| Calculations | `src/lib/research/` | Pure functions, no React, each with a unit test. Components receive finished values and draw them. |
+| Generic UI | `src/components/ui/` | Knows nothing about sports. |
+| Domain UI | `src/features/<area>/` | One folder per product area. A feature may import `features/slip`, never another feature. Anything two features need moves to `components/` or `lib/`. |
+| URLs | `src/lib/routes.ts` | No hand-written hrefs. |
+| Image URLs | `src/components/media/imageUrls.ts` | Data carries keys, never URLs. |
+| Shareable page state | URL via nuqs | A `…Params.ts` file, a View, a Container and a `…Fallback`, as in `features/game-detail/`. |
+| Colours | Tokens in `src/app/globals.css` | `bg-card`, `text-fg-muted`, `text-good-fg`. Raw colours only inside hand-drawn SVG charts. |
+| Page width | `src/components/shell/PageColumn.tsx` | Every page sits in it: left-aligned, one width. No page sets its own `max-w-…` or centres itself. The player page keeps its own layout and ends at the same right edge. |
+| Layouts that need room | Container variants (`@6xl:grid-cols-2`) | The side panel's card and its margins take about 23rem off the page from 1280px up, so the screen's width does not say how wide a page is. Anything that needs a certain page or card width to fit (two tables side by side, a full name, an extra column) asks its container: `PageColumn`, or a card marked `@container`. Screen breakpoints (`sm:`, `md:`, `lg:`) are for phone against desktop only. Check a change at 1280px, where the page is narrowest. |
+| Stand Outs | `src/lib/research/standOuts/`, a `…StandOuts` file in the feature, `src/app/[league]/@standouts/` | Every page URL has a matching `@standouts` route. The calculation is a tested pure function, capped by `pickStandOuts`, that reuses the page's thresholds. Each finding carries one figure and the keys of what it points at on the page. Nothing is called out on a small sample or missing data. |
+
+## Lines
+
+Separate regions with background shade and spacing. Show a state (selected, in the slip, best, ahead, behind) with a fill. Do not draw an outline on a card, row, badge, button or toggle, and do not add a divider, unless the line itself carries a meaning. The lines that do:
+
+- The underline on the active tab.
+- Keyboard focus rings.
+- Chart marks: the dashed prop line, the dashed "Tonight" bar, trend dots, the radar's rings and spokes, and the court zones and hoop.
+- The emerald outline on the spotlight starter, which marks the player the research shortcut opens.
+- The brief frame drawn over the spot a stand-out points at. It fades away on its own.
+- The small frames around team logos and player headshots.
+- The top bar, left rail and phone tab bar edges. Their shade is only a small step from the page, so the edge is what separates them. The right-hand side panel (Stand Outs or the research slip) has no edge: it is a rounded card set apart by its shade and the space around it.
+
+## Limits
+
+- A component that does two jobs, or passes about 250 lines, gets split.
+- The second copy of any logic or markup gets extracted.
+- No new dependency without asking first.
+- Every new screen has loading, empty and not-found states and works at phone and desktop widths.
+
+## Product rules
+
+- A number on screen is computed from the data, never typed in.
+- Missing data is never shown as zero. A game the player missed is not in the sample.
+- Over means strictly greater than the line. No qualifying games means "no matching games", not 0%.
+- Grades are data. The UI colours them and never calculates one.
+
+## Before finishing
+
+- `cd Website && npm run check` passes (type check, lint, tests).
+- If folders, routes, URL parameters or data shapes changed, update `Website/README.md` and `Website/docs/DATABASE.md` in the same change.
+- No backend, no git commit, unless asked.

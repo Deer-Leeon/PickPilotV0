@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ *
+ * The prototype used 66 hex colours, most of them near-identical dark greys.
+ * They are consolidated here. Use these names in components
+ * (bg-card, border-border, text-fg-muted, text-good-fg) and do not add raw
+ * hex values to markup. Team colours are data, not tokens.
+ */
+@theme {
+  /* Surfaces, darkest to lightest */
+  --color-canvas: #09090b; /* page background */
+  --color-inset: #0b0c10; /* wells: odds cells, chart wells, top bar, rail */
+  --color-panel: #0e1016; /* sidebars, drawers, outer frames */
+  --color-card: #12141b; /* cards */
+  --color-raised: #171a23; /* items that sit on a card */
+  --color-active: #232732; /* selected segment, pressed state */
+
+  /* Lines */
+  --color-border: #242731;
+  --color-border-strong: #313644;
+
+  /* Text */
+  --color-fg: #f8fafc; /* headings, values */
+  --color-fg-soft: #d7dbe2; /* body text */
+  --color-fg-muted: #9ca3af; /* secondary text */
+  --color-fg-subtle: #808898; /* labels, captions */
+  --color-fg-faint: #4b5563; /* separators, disabled */
+
+  /* Signal: emerald = best line / advantage / hit, red = disadvantage / miss */
+  --color-good: #10b981; /* fills */
+  --color-good-fg: #34d399; /* text on dark */
+  --color-bad: #ef4444;
+  --color-bad-fg: #f87171;
+  --color-warn-fg: #fbbf24; /* uncertain: questionable injury status */
+
+  --animate-fade-in: fade-in 150ms ease-out;
+  --animate-sheet-up: sheet-up 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  --animate-sheet-right: sheet-right 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  --animate-sheet-left: sheet-left 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  /* List items arriving one after another. "both" keeps an item hidden until its turn. */
+  --animate-rise-in: rise-in 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* The player intro in the side panel: the team's glow opens, then the player rises into the glow. */
+  --animate-glow-in: glow-in 900ms ease-out both;
+  --animate-cutout-in: cutout-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes glow-in {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes cutout-in {
+    from {
+      opacity: 0;
+      transform: translateY(35%) scale(1.06);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  @keyframes sheet-right {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes sheet-left {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Numbers line up in columns wherever the mono face is used. */
+  .font-mono {
+    font-variant-numeric: tabular-nums;
+  }
+
+  button,
+  [role="button"],
+  summary {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-fg);
+    outline-offset: 2px;
+  }
+
+  /* Thin dark scrollbars, as in the prototype. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2b2e37 transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2b2e37;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Hide the scrollbar on horizontally scrolling strips (tabs, chips). */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Bottom padding that clears the phone home indicator. */
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
