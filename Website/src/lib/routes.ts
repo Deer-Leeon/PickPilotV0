@@ -18,6 +18,7 @@ export const GAME_SECTION_LABELS: Record<GameSection, string> = {
 
 export const routes = {
   games: (league: string, date?: string) => (date ? `/${league}/games?date=${date}` : `/${league}/games`),
+  gamesBroadcast: (league: string) => `/${league}/games/concepts/broadcast`,
   game: (league: string, gameId: string, section: GameSection = "matchup") => `/${league}/games/${gameId}/${section}`,
   players: (league: string) => `/${league}/players`,
   player: (league: string, playerId: string, options?: { stat?: StatId }) =>

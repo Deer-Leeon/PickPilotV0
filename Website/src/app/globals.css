@@ -35,6 +35,12 @@
   --color-bad-fg: #f87171;
   --color-warn-fg: #fbbf24; /* uncertain: questionable injury status */
 
+  /* Broadcast concept screens: warm off-white type on deep charcoal, one amber accent. */
+  --color-charcoal: #101114;
+  --color-warm: #f2ede2;
+  --color-warm-muted: #a49c8e;
+  --color-accent: #e6a23c;
+
   --animate-fade-in: fade-in 150ms ease-out;
   --animate-sheet-up: sheet-up 220ms cubic-bezier(0.32, 0.72, 0, 1);
   --animate-sheet-right: sheet-right 220ms cubic-bezier(0.32, 0.72, 0, 1);

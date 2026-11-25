@@ -1,46 +1,9 @@
-import { Suspense, type ReactNode } from "react";
-import { notFound } from "next/navigation";
-import { AppShell } from "@/components/shell/AppShell";
-import { getLeague, getNavIndex } from "@/data/repository";
-import { DEFAULT_LEAGUE } from "@/lib/routes";
-
-/** Leagues that are built ahead of time. Add a league here when it has data. */
-export function generateStaticParams() {
-  return [{ league: DEFAULT_LEAGUE }];
-}
-
-type Params = LayoutProps<"/[league]">["params"];
+import type { ReactNode } from "react";
 
 /**
- * Route params are read inside Suspense throughout the app. Next.js shares
- * one prefetched shell between every link to a route, so anything that
- * depends on the URL has to sit behind a boundary (see "Next.js rules" in
- * README.md).
+ * The league's root layout: a passthrough so a route group can opt out of the
+ * app shell. The shell lives in `(app)/layout.tsx`; `(broadcast)` replaces it.
  */
-export default function LeagueLayout({ children, standouts, params }: LayoutProps<"/[league]">) {
-  return (
-    <Suspense fallback={<div className="h-dvh bg-canvas" />}>
-      <LeagueShell params={params} standOuts={standouts}>
-        {children}
-      </LeagueShell>
-    </Suspense>
-  );
-}
-
-/**
- * `standOuts` is the `@standouts` parallel route: for every page URL it holds
- * a second route that loads what stands out on that page, and the shell shows
- * it in the side panel.
- */
-async function LeagueShell({ params, standOuts, children }: { params: Params; standOuts: ReactNode; children: ReactNode }) {
-  const { league: leagueId } = await params;
-  const league = await getLeague(leagueId);
-  if (!league) notFound();
-  const nav = await getNavIndex(league.id);
-
-  return (
-    <AppShell league={league} nav={nav} standOuts={standOuts}>
-      {children}
-    </AppShell>
-  );
+export default function LeagueRootLayout({ children }: { children: ReactNode }) {
+  return children;
 }
